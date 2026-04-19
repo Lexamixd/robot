@@ -89,3 +89,31 @@ st.error("""
 Bu bilgiler sadece bilgilendirme amaçlı olup, herhangi bir yatırım aracının alım-satım önerisi olarak kabul edilmemelidir. 
 Yapacağınız işlemlerden doğabilecek zararlardan kullanıcı sorumludur.
 """) 
+# --- YAN MENÜ: PORTFÖY GİRİŞİ ---
+with st.sidebar:
+    st.header("💼 PORTFÖYÜM")
+    st.write("Elinizdeki hisse bilgilerini girerek kâr/zarar durumunuzu takip edin.")
+    
+    maliyet = st.number_input("Ortalama Maliyet (TL):", min_value=0.0, value=0.0, step=0.01)
+    adet = st.number_input("Hisse Adedi:", min_value=0, value=0, step=1)
+    
+    if maliyet > 0 and adet > 0:
+        toplam_maliyet = maliyet * adet
+        guncel_deger = son_fiyat * adet
+        kar_zarar_tl = guncel_deger - toplam_maliyet
+        kar_zarar_oran = (kar_zarar_tl / toplam_maliyet) * 100
+        
+        st.divider()
+        st.subheader("Durum Özeti")
+        
+        # Renk Belirleme
+        durum_rengi = "#2ecc71" if kar_zarar_tl >= 0 else "#e74c3c"
+        durum_ikonu = "📈" if kar_zarar_tl >= 0 else "📉"
+        
+        st.markdown(f"""
+            <div style="background-color:#1a1a1a; padding:20px; border-radius:10px; border: 2px solid {durum_rengi}; text-align:center;">
+                <h2 style="color:{durum_rengi}; margin:0;">{durum_ikonu} {kar_zarar_oran:.2f}%</h2>
+                <p style="color:white; font-size:18px; margin:10px 0 0 0;"><b>{kar_zarar_tl:,.2f} TL</b></p>
+                <small style="color:#888;">Güncel Bakiyeniz: {guncel_deger:,.2f} TL</small>
+            </div>
+        """, unsafe_allow_html=True)
