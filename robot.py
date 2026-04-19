@@ -83,3 +83,13 @@ if hisse_input:
 # Footer
 st.divider()
 st.caption("LEXA Terminal | Veriler Yahoo Finance üzerinden anlık çekilmektedir.")
+# --- YATIRIM TAVSİYESİ UYARISI (YENİ) ---
+st.error("""
+⚠️ **YASAL UYARI:** Burada yer alan yatırım bilgi, yorum ve tavsiyeleri yatırım danışmanlığı kapsamında değildir. 
+Bu bilgiler sadece bilgilendirme amaçlı olup, herhangi bir yatırım aracının alım-satım önerisi olarak kabul edilmemelidir. 
+Yapacağınız işlemlerden doğabilecek zararlardan kullanıcı sorumludur.
+""")
+
+# Footer (Eski yerinde kalsın)
+st.divider()
+st.caption("LEXA Terminal | Veriler Yahoo Finance üzerinden anlık çekilmektedir.")
