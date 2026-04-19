@@ -79,6 +79,10 @@ if hisse_input:
 
     except Exception as e:
         st.error(f"Sistem Hatası: {e}")
+st.subheader(f"📢 {hisse_input} Gelişmeleri")
+# Google Haberler'e yönlendiren şık bir buton
+google_haber_linki = f"https://www.google.com/search?q={hisse_input}+hisse+haberleri&tbm=nws"
+st.link_button(f"🔗 {hisse_input} Hakkındaki Son Haberleri Gör", google_haber_linki)
 
 # Footer
 st.divider()
@@ -118,7 +122,3 @@ with st.sidebar:
             </div>
         """, unsafe_allow_html=True)
 
-st.subheader(f"📢 {hisse_input} Gelişmeleri")
-# Google Haberler'e yönlendiren şık bir buton
-google_haber_linki = f"https://www.google.com/search?q={hisse_input}+hisse+haberleri&tbm=nws"
-st.link_button(f"🔗 {hisse_input} Hakkındaki Son Haberleri Gör", google_haber_linki)
