@@ -118,17 +118,7 @@ with st.sidebar:
             </div>
         """, unsafe_allow_html=True)
 
-# --- HABERLER BÖLÜMÜ ---
-st.subheader("📢 Şirket Haberleri & Gelişmeler")
-try:
-    haberler = hisse.news
-    if haberler:
-        for haber in haberler[:3]: # En güncel 3 haber
-            with st.container():
-                st.write(f"**{haber['title']}**")
-                st.caption(f"Kaynak: {haber['publisher']} | Yayımlanma: {pd.to_datetime(haber['providerPublishTime'], unit='s')}")
-                st.divider()
-    else:
-        st.write("Şu an için güncel bir gelişme bulunamadı.")
-except:
-    st.write("Haberler şu an yüklenemiyor.")
+st.subheader(f"📢 {hisse_input} Gelişmeleri")
+# Google Haberler'e yönlendiren şık bir buton
+google_haber_linki = f"https://www.google.com/search?q={hisse_input}+hisse+haberleri&tbm=nws"
+st.link_button(f"🔗 {hisse_input} Hakkındaki Son Haberleri Gör", google_haber_linki)
