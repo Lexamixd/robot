@@ -117,3 +117,18 @@ with st.sidebar:
                 <small style="color:#888;">Güncel Bakiyeniz: {guncel_deger:,.2f} TL</small>
             </div>
         """, unsafe_allow_html=True)
+
+# --- HABERLER BÖLÜMÜ ---
+st.subheader("📢 Şirket Haberleri & Gelişmeler")
+try:
+    haberler = hisse.news
+    if haberler:
+        for haber in haberler[:3]: # En güncel 3 haber
+            with st.container():
+                st.write(f"**{haber['title']}**")
+                st.caption(f"Kaynak: {haber['publisher']} | Yayımlanma: {pd.to_datetime(haber['providerPublishTime'], unit='s')}")
+                st.divider()
+    else:
+        st.write("Şu an için güncel bir gelişme bulunamadı.")
+except:
+    st.write("Haberler şu an yüklenemiyor.")
